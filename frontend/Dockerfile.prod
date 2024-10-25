@@ -1,0 +1,13 @@
+# Étape 1 : Build
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN yarn install
+RUN yarn build
+
+# Étape 2 : Serveur de Production
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/.output ./.output
+EXPOSE 3000
+CMD ["node", ".output/server/index.mjs"]
