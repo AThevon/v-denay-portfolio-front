@@ -1,0 +1,28 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.0",
+    "@nuxt/fonts": "^0.7.2",
+    "@nuxt/image": "^1.7.1",
+    "@nuxt/ui": "^2.18.4",
+    "gsap": "^3.12.5",
+    "lucide-vue-next": "^0.436.0",
+    "nuxt": "^3.13.0",
+    "nuxt-swiper": "^1.2.2",
+    "vue": "^3.5.8",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "nodemailer": "^6.9.14",
+    "nuxt-nodemailer": "^1.1.2"
+  }
+}
