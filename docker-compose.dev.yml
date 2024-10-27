@@ -8,7 +8,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    command: run --allow-net --allow-env --watch main.ts
+    command: run --allow-net --allow-read --allow-write  --allow-env  --allow-import --watch main.ts
     env_file:
       - ./backend/.env
 
@@ -33,7 +33,7 @@ services:
     depends_on:
       - db
     volumes:
-      - pgadmin-data:/var/lib/pgadmin 
+      - pgadmin-data:/var/lib/pgadmin
 volumes:
   pgdata:
   pgadmin-data:

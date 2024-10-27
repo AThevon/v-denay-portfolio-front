@@ -19,7 +19,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    command: run --allow-net --allow-env main.ts
+    command: run --allow-net --allow-read --allow-write --allow-env main.ts
     env_file:
       - ./backend/.env 
   db:

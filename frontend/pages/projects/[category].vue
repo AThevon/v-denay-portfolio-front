@@ -20,7 +20,7 @@
 				<component :is="currentCategory?.icon" class="w-6 h-6" />
 			</UDivider>
 		</div>
-		<div class="flex flex-col space-y-6 pl-4">
+		<div class="flex flex-col space-y-6 pl-4 pb-14">
 			<ProjectCard
 				v-for="(project, index) in filteredProjects"
 				:key="index"
@@ -32,14 +32,10 @@
 </template>
 
 <script lang="ts" setup>
-	import {
-		categories,
-		projects,
-		type Project,
-		type Category,
-	} from '~/data/projects';
+	import { ref, onMounted } from 'vue';
+	import { useRoute } from 'vue-router';
 	import { gsap } from 'gsap';
-	import { ArrowLeft } from 'lucide-vue-next';
+	import { categories } from '~/data/projects';
 
 	definePageMeta({
 		pageTransition: {
@@ -48,15 +44,31 @@
 	});
 
 	const route = useRoute();
-	const currentCategory: Category | undefined = categories.find(
-		(category: Category) => category.title === route.params.category,
-	);
+	const currentCategoryTitle = route.params.category as string;
 
-	const filteredProjects: Project[] = projects.filter(
-		(project: Project) => project.category === currentCategory?.title,
-	);
+	const currentCategory = ref();
+	const filteredProjects = ref([]);
+
+	const fetchProjects = async () => {
+		try {
+			const response = await fetch('http://localhost:8000/projects');
+			if (!response.ok) throw new Error('Failed to fetch projects');
+			const projects = await response.json();
+			filteredProjects.value = projects.filter(
+				(project: any) => project.category === currentCategoryTitle,
+			);
+		} catch (error) {
+			console.error('Error fetching projects:', error);
+		}
+	};
 
 	onMounted(() => {
+		currentCategory.value = categories.find(
+			(category: any) => category.title === currentCategoryTitle,
+		);
+
+		fetchProjects();
+
 		const timeline = gsap.timeline();
 		timeline.from('.divider', {
 			scaleX: 0,

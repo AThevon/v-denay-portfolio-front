@@ -25,9 +25,12 @@
 						{{ project.date }}
 					</p>
 				</div>
-				<div v-if="project.artist" class="">
+				<div v-if="project.client" class="">
 					<p class="font-second text-xl tracking-widest opacity-80">
-						Artiste : {{ project.artist }}
+						{{
+							(project.category = CategoryTitle.MUSIQUE ? 'Artiste' : 'Client')
+						}}
+						: {{ project.client }}
 					</p>
 				</div>
 			</div>
@@ -37,9 +40,10 @@
 </template>
 
 <script lang="ts" setup>
-	import { type Project } from '~/data/projects';
+	import { CategoryTitle, type Project } from '~/data/projects';
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import Category from '~/pages/projects/[category].vue';
 
 	// Enregistre le plugin ScrollTrigger
 	gsap.registerPlugin(ScrollTrigger);
@@ -78,4 +82,3 @@
 		}, 1000); // Attendre 1 seconde avant d'initialiser l'animation
 	});
 </script>
-
