@@ -39,7 +39,7 @@ export type Project = {
 	role: string;
 	description: string;
 	date: string;
-  client?: string;
+	client?: string;
 };
 
 export const projects: Project[] = [
@@ -52,7 +52,7 @@ export const projects: Project[] = [
 		description:
 			'Clip explosif dans les rues de Marseille, une énergie brute avec un montage nerveux.',
 		date: '2023-07-22',
-    client: 'Keny Arkana',
+		client: 'Keny Arkana',
 	},
 	{
 		title: 'Innovation en Santé',
@@ -63,7 +63,7 @@ export const projects: Project[] = [
 		description:
 			'Présentation des nouvelles avancées technologiques d’une entreprise de biotech.',
 		date: '2022-05-12',
-    client: 'John Doe',
+		client: 'John Doe',
 	},
 	{
 		title: 'La Nuit des Rêves',
@@ -74,7 +74,7 @@ export const projects: Project[] = [
 		description:
 			'Un voyage onirique dans un monde où les rêves et la réalité se confondent.',
 		date: '2021-11-15',
-    client: 'Jane Doe',
+		client: 'Jane Doe',
 	},
 	{
 		title: 'No Limit',

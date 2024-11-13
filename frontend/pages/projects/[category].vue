@@ -35,7 +35,7 @@
 	import { ref, onMounted } from 'vue';
 	import { useRoute } from 'vue-router';
 	import { gsap } from 'gsap';
-	import { categories } from '~/data/projects';
+	import { categories, projects, type Project } from '~/data/projects';
 
 	definePageMeta({
 		pageTransition: {
@@ -47,27 +47,35 @@
 	const currentCategoryTitle = route.params.category as string;
 
 	const currentCategory = ref();
-	const filteredProjects = ref([]);
+	const filteredProjects = ref(
+		projects.filter(
+			(project: Project) => project.category === currentCategoryTitle,
+		),
+	);
 
-	const fetchProjects = async () => {
-		try {
-			const response = await fetch('http://localhost:8000/projects');
-			if (!response.ok) throw new Error('Failed to fetch projects');
-			const projects = await response.json();
-			filteredProjects.value = projects.filter(
-				(project: any) => project.category === currentCategoryTitle,
-			);
-		} catch (error) {
-			console.error('Error fetching projects:', error);
-		}
-	};
+	// const { data: projects, error } = useFetch('http://localhost:8000/projects');
+
+	// ou
+
+	// const fetchProjects = async () => {
+	// 	try {
+	// 		const response = await fetch('http://localhost:8000/projects');
+	// 		if (!response.ok) throw new Error('Failed to fetch projects');
+	// 		const projects = await response.json();
+	// 		filteredProjects.value = projects.filter(
+	// 			(project: any) => project.category === currentCategoryTitle,
+	// 		);
+	// 	} catch (error) {
+	// 		console.error('Error fetching projects:', error);
+	// 	}
+	// };
 
 	onMounted(() => {
 		currentCategory.value = categories.find(
 			(category: any) => category.title === currentCategoryTitle,
 		);
 
-		fetchProjects();
+		// fetchProjects();
 
 		const timeline = gsap.timeline();
 		timeline.from('.divider', {
