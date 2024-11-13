@@ -1,41 +1,62 @@
 <template>
 	<div
-		class="card bg-neutral-300/30 dark:bg-neutral-700/30 backdrop-blur-md rounded-s-2xl border border-neutral-300/10 dark:border-neutral-700/10 p-8 translate-x-10 pb-[8rem] relative overflow-hidden"
+		class="card bg-neutral-300/30 dark:bg-neutral-700/30 backdrop-blur-md rounded-s-2xl border border-neutral-300/10 dark:border-neutral-700/10 translate-x-10 px-10 py-20 relative overflow-hidden"
 		ref="cardElement"
 	>
-		<!-- <div :class="['flex', { 'flex-row-reverse': index % 2 !== 0 }]"> -->
-		<div class="grid grid-cols-[660px_1fr]">
+		<NuxtImg
+			:src="project.image"
+			:alt="project.title"
+			class="absolute inset-0 -z-20 object-cover w-full h-full blur-[2px]"
+		/>
+		<div
+			class="-z-10 absolute inset-0 bg-gradient-to-r from-neutral-900/20 to-neutral-950"
+		></div>
+		<div class="grid grid-cols-[620px_1fr] h-full">
 			<iframe
-				class="rounded-lg aspect-video"
+				class="rounded-lg aspect-video place-self-center"
 				:src="project.url"
-				width="660"
-				height="415"
-				title="YouTube video player"
+				width="620"
+				height="400"
+				title="Video player"
 				frameborder="0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 				referrerpolicy="strict-origin-when-cross-origin"
 				allowfullscreen
 			></iframe>
-			<div class="px-8">
-				<div class="mt-5 flex justify-between items-start">
-					<h3 class="text-3xl font-bold">
-						{{ project.title }}
-					</h3>
-					<p class="font-second tracking-widest opacity-60 text-lg">
-						{{ project.date }}
-					</p>
-				</div>
-				<div v-if="project.client" class="">
-					<p class="font-second text-xl tracking-widest opacity-80">
-						{{
-							(project.category = CategoryTitle.MUSIQUE ? 'Artiste' : 'Client')
-						}}
-						: {{ project.client }}
-					</p>
+			<div class="pl-8 pr-4 mt-20 text-neutral-100">
+				<p
+					class="absolute top-10 right-16 font-second tracking-widest text-gray-400 text-xl"
+				>
+					{{ formatDate(project.date) }}
+				</p>
+				<div class="h-full flex flex-col gap-8 items-start">
+					<div>
+						<h3 class="text-4xl font-bold">
+							{{ project.title }}
+						</h3>
+						<p class="w-fit font-second text-2xl tracking-widest text-gray-300">
+              <span class="block h-[1.5px] bg-neutral-400 w-[125%] my-2 rounded" />
+              {{ project.client }}
+						</p>
+					</div>
+					<div class="text-lg font-light text-gray-300">
+						Rôle :
+						<span
+							class="font-bold text-neutral-100"
+							v-for="(role, index) in project.roles"
+							:key="role"
+						>
+							{{ role
+							}}<span
+								class="font-normal"
+								v-if="index < project.roles.length - 1"
+								>,
+							</span>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <p class="mt-4 mb-[4rem]">{{ project.description }}</p> -->
 	</div>
 </template>
 
@@ -61,12 +82,21 @@
 
 	const cardElement = ref<HTMLElement | null>(null);
 
+	const formatDate = (dateString: string) => {
+		const date = new Date(dateString);
+		return new Intl.DateTimeFormat('fr-FR', {
+			day: '2-digit',
+			month: 'long',
+			year: 'numeric',
+		}).format(date);
+	};
+
 	onMounted(() => {
 		setTimeout(() => {
 			if (cardElement.value) {
 				// Une seule animation gsap avec tous les effets
 				gsap.to(cardElement.value, {
-					translateX: 0, // Réinitialise la translation
+					translateX: 10, // Réinitialise la translation
 					boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.15)',
 					scrollTrigger: {
 						trigger: cardElement.value,

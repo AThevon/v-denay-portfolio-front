@@ -3,17 +3,17 @@
 		<!-- Galleries -->
 		<ImageGallery
 			title="Photos Color"
-			folder="photos-color"
+			folder="photos/photos-color"
 			@open-viewer="openViewer"
 		/>
 		<ImageGallery
 			title="Illusions Perdues"
-			folder="illusions-perdues"
+			folder="photos/illusions-perdues"
 			@open-viewer="openViewer"
 		/>
 		<ImageGallery
 			title="Portraits"
-			folder="portraits"
+			folder="photos/portraits"
 			@open-viewer="openViewer"
 		/>
 

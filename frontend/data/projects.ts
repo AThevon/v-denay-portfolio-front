@@ -36,211 +36,221 @@ export type Project = {
 	category: string;
 	image: string;
 	url: string;
-	role: string;
-	description: string;
+	roles: string[];
 	date: string;
 	client?: string;
 };
 
 export const projects: Project[] = [
+	// CORPO MONTAGE
 	{
-		title: 'Street Vibes',
-		category: CategoryTitle.MUSIQUE,
-		image: 'street-vibes.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL1',
-		role: 'Réalisateur',
-		description:
-			'Clip explosif dans les rues de Marseille, une énergie brute avec un montage nerveux.',
-		date: '2023-07-22',
-		client: 'Keny Arkana',
-	},
-	{
-		title: 'Innovation en Santé',
+		title: 'BSD - "Faire une guerre à Paris"',
 		category: CategoryTitle.CORPORATE,
-		image: 'innovation-sante.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL2',
-		role: 'Monteur',
-		description:
-			'Présentation des nouvelles avancées technologiques d’une entreprise de biotech.',
-		date: '2022-05-12',
-		client: 'John Doe',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/CORPO/1_UNIBET_BSD_1.png',
+		url: 'https://www.youtube.com/embed/CuH2ttrOmyk',
+		roles: ['Monteur'],
+		date: '2024-09-20',
+		client: 'UNIBET',
 	},
 	{
-		title: 'La Nuit des Rêves',
-		category: CategoryTitle.FICTION,
-		image: 'nuit-reves.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL3',
-		role: 'Scénariste',
-		description:
-			'Un voyage onirique dans un monde où les rêves et la réalité se confondent.',
-		date: '2021-11-15',
-		client: 'Jane Doe',
-	},
-	{
-		title: 'No Limit',
-		category: CategoryTitle.MUSIQUE,
-		image: 'no-limit.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL4',
-		role: 'Réalisateur',
-		description:
-			'Un clip minimaliste mais percutant mettant en avant un rappeur montant de Paris.',
-		date: '2023-03-08',
-	},
-	{
-		title: "L'avenir du Digital",
+		title:
+			'BSD - "Le nom Saint Denis commence à résonner dans le monde du MMA"',
 		category: CategoryTitle.CORPORATE,
-		image: 'avenir-digital.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL5',
-		role: 'Monteur',
-		description:
-			'Présentation des solutions numériques pour les entreprises du futur.',
-		date: '2021-08-30',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/CORPO/2_UNIBET BSD_2.png',
+		url: 'https://www.youtube.com/embed/q9q1SU80_6c',
+		roles: ['Monteur'],
+		date: '2024-02-29',
+		client: 'UNIBET',
 	},
 	{
-		title: 'Ombres et Lumières',
-		category: CategoryTitle.FICTION,
-		image: 'ombres-lumieres.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL6',
-		role: 'Monteur',
-		description:
-			'Un thriller psychologique où les ombres cachent plus que des secrets.',
-		date: '2020-02-19',
-	},
-	{
-		title: 'Dans la Brume',
-		category: CategoryTitle.MUSIQUE,
-		image: 'dans-la-brume.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL7',
-		role: 'Directeur Photo',
-		description:
-			'Un clip en noir et blanc qui reflète la mélancolie d’un rappeur en pleine ascension.',
-		date: '2023-06-05',
-	},
-	{
-		title: 'Recyclage et Innovation',
+		title: 'MEDINE',
 		category: CategoryTitle.CORPORATE,
-		image: 'recyclage.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL8',
-		role: 'Réalisateur',
-		description:
-			'Documentaire sur une startup qui révolutionne le recyclage des plastiques.',
-		date: '2022-09-17',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/CORPO/3_MEDINE.png',
+		url: 'https://www.youtube.com/embed/mPymN3eHgmM',
+		roles: ['Monteur'],
+		date: '2022-10-20',
+		client: '777',
 	},
 	{
-		title: 'Le Dernier Voyage',
-		category: CategoryTitle.FICTION,
-		image: 'dernier-voyage.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL9',
-		role: 'Réalisateur',
-		description: 'Un court-métrage touchant sur les adieux et la rédemption.',
+		title:
+			'LA RUE HABILLE LA RUE / KAARIS, KALASH CRIMINEL, BOUCIF, ROLLAND COURBIS, CIRYL GANE...',
+		category: CategoryTitle.CORPORATE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/CORPO/4_FOOTKORNER.png',
+		url: 'https://www.youtube.com/embed/TqGCcVRXB5I',
+		roles: ['Monteur'],
 		date: '2022-03-11',
+		client: 'Footkorner',
 	},
 	{
-		title: 'Dans le Game',
-		category: CategoryTitle.MUSIQUE,
-		image: 'dans-le-game.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL10',
-		role: 'Scénariste',
-		description:
-			'Un rappeur émergeant exprime sa lutte pour percer dans l’industrie.',
-		date: '2023-10-07',
-	},
-	{
-		title: 'Sécurité au Travail',
+		title: 'FORMATION ARBITRES ET COACHS A DJOUGOU',
 		category: CategoryTitle.CORPORATE,
-		image: 'securite-travail.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL11',
-		role: 'Monteur',
-		description:
-			'Sensibilisation sur les bonnes pratiques de sécurité en entreprise.',
-		date: '2021-06-18',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/CORPO/5_EBD_1.png',
+		url: 'https://www.youtube.com/embed/oqZufrDbtDo',
+		roles: ['Monteur'],
+		date: '2023-05-08',
+		client: 'Enfant du Benin Debout',
+	},
+
+	// MUSIC VIDEO - RÉALISATEUR
+	{
+		title: 'Précipice',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/pluggy-precipice.png',
+		url: 'https://www.youtube.com/embed/W8Y6VIU2Vho',
+		roles: ['Réalisateur', 'Monteur'],
+		date: '2024-10-01',
+		client: 'Plüggy',
 	},
 	{
-		title: 'Une Seconde Chance',
+		title: 'NIGHTMARES/LEMAL',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/jeunejr-nightmares.png',
+		url: 'https://www.youtube.com/embed/gAc2vaURLjE',
+		roles: ['Réalisateur', 'Monteur', 'Étalonneur'],
+		date: '2024-02-14',
+		client: 'JEUNEJR',
+	},
+	{
+		title: 'GET OUT - Live Session',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/jeunejr-get-out.png',
+		url: 'https://www.youtube.com/embed/x-87DUbgSRc',
+		roles: ['Réalisateur', 'Monteur', 'Étalonneur'],
+		date: '2023-11-14',
+		client: 'JEUNEJR',
+	},
+	{
+		title: 'INTRO',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/jeunejr-intro.png',
+		url: 'https://www.youtube.com/embed/k_Rs_CjlqJ8',
+		roles: ['Réalisateur', 'Monteur', 'Étalonneur'],
+		date: '2023-10-18',
+		client: 'JEUNEJR',
+	},
+	{
+		title: 'PWAY',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/mlz-pway.png',
+		url: 'https://www.youtube.com/embed/UyDDSzjkSCI',
+		roles: ['Réalisateur', 'Monteur', 'Étalonneur'],
+		date: '2023-12-08',
+		client: 'MLZ',
+	},
+	{
+		title: 'PAIN96 + ICEY',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/slimkadhafi-pain96.png',
+		url: 'https://www.youtube.com/embed/ROwSfiBjSp0',
+		roles: ['Réalisateur', 'Monteur'],
+		date: '2023-07-18',
+		client: 'SlimKadhafi & L3on',
+	},
+
+	// MUSIC VIDEO - MONTEUR
+	{
+		title: 'WU TANG',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/venom-wutang.png',
+		url: 'https://www.youtube.com/embed/TKrSgEf2EJU',
+		roles: ['Monteur'],
+		date: '2023-09-29',
+		client: 'VENOM CZ',
+	},
+
+	// MUSIC VIDEO - ÉTALONNEUR
+	{
+		title: 'Soupe',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/fluo-soupe.png',
+		url: 'https://www.youtube.com/embed/hFfNDSolGtY',
+		roles: ['Étalonneur'],
+		date: '2024-09-20',
+		client: 'FLUO',
+	},
+	{
+		title: 'La beauté des maux',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/ichon-beaute.png',
+		url: 'https://www.youtube.com/embed/aoxu62I_AGY',
+		roles: ['Étalonneur'],
+		date: '2024-03-26',
+		client: 'Ichon',
+	},
+	{
+		title: 'BEHERIT',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/zeu-beherit.png',
+		url: 'https://www.youtube.com/embed/GvL0NQ_w1mc',
+		roles: ['Étalonneur'],
+		date: '2024-11-08',
+		client: 'Zeu',
+	},
+	{
+		title: 'WAGNER',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/zeu-wagner.png',
+		url: 'https://www.youtube.com/embed/6zqOrK_Pl90',
+		roles: ['Étalonneur'],
+		date: '2024-05-31',
+		client: 'Zeu',
+	},
+	{
+		title: 'CAPTAIN TSUBASA',
+		category: CategoryTitle.MUSIQUE,
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/MUSIC/zeu-captain-tsubasa.png',
+		url: 'https://www.youtube.com/embed/aSyVDK4wS30',
+		roles: ['Étalonneur'],
+		date: '2023-06-25',
+		client: 'Zeu',
+	},
+
+	// FICTION - Chef opérateur
+	{
+		title: 'Le magasin des folies',
 		category: CategoryTitle.FICTION,
-		image: 'seconde-chance.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL12',
-		role: 'Monteur',
-		description:
-			'L’histoire d’un homme qui reçoit une seconde chance dans la vie.',
-		date: '2021-01-24',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/FICTION/le-magasin-des-folies.png',
+		url: 'https://player.vimeo.com/video/697297985?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+		roles: ['Chef opérateur'],
+		date: '2022-04-08',
+		client: 'Les Films du Loup Blanc',
 	},
 	{
-		title: 'Démonstration',
-		category: CategoryTitle.MUSIQUE,
-		image: 'demonstration.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL13',
-		role: 'Monteur',
-		description:
-			'Un clip puissant illustrant la montée en puissance d’un jeune artiste.',
-		date: '2022-12-14',
-	},
-	{
-		title: 'Leadership Féminin',
-		category: CategoryTitle.CORPORATE,
-		image: 'leadership.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL14',
-		role: 'Réalisateur',
-		description: 'Portrait de femmes leaders dans le secteur technologique.',
-		date: '2023-09-28',
-	},
-	{
-		title: 'Silence des Mots',
+		title: 'Star Child',
 		category: CategoryTitle.FICTION,
-		image: 'silence-mots.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL15',
-		role: 'Réalisateur',
-		description: 'Un drame familial intense centré sur les non-dits.',
-		date: '2020-05-13',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/FICTION/star-child.png',
+		url: 'https://player.vimeo.com/video/464312821?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+		roles: ['Chef opérateur'],
+		date: '2020-10-02',
+		client: 'Les Films du Loup Blanc',
 	},
 	{
-		title: 'Lueur Nocturne',
-		category: CategoryTitle.MUSIQUE,
-		image: 'lueur-nocturne.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL16',
-		role: 'Directeur Artistique',
-		description:
-			'Un clip sombre et poétique mettant en scène la ville endormie.',
-		date: '2023-02-20',
-	},
-	{
-		title: 'Durabilité en Action',
-		category: CategoryTitle.CORPORATE,
-		image: 'durabilite-action.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL17',
-		role: 'Monteur',
-		description:
-			'Vidéo de présentation sur les pratiques durables dans une grande entreprise.',
-		date: '2021-04-11',
-	},
-	{
-		title: "L'Inconnu",
+		title: 'Welcome To Eden',
 		category: CategoryTitle.FICTION,
-		image: 'inconnu.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL18',
-		role: 'Monteur',
-		description:
-			'Un thriller mystérieux où un homme se réveille sans souvenirs.',
-		date: '2022-11-29',
-	},
-	{
-		title: 'Sous les Lumières',
-		category: CategoryTitle.MUSIQUE,
-		image: 'sous-lumieres.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL19',
-		role: 'Réalisateur',
-		description:
-			'Clip urbain filmé sous les néons de la ville, reflétant la gloire et la solitude.',
-		date: '2023-09-02',
-	},
-	{
-		title: "Esprit d'Équipe",
-		category: CategoryTitle.CORPORATE,
-		image: 'esprit-equipe.jpg',
-		url: 'https://www.youtube.com/embed/dummyURL20',
-		role: 'Monteur',
-		description:
-			'Focus sur le travail d’équipe au sein d’une entreprise internationale.',
-		date: '2020-12-10',
+		image:
+			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/FICTION/welcome-to-eden.png',
+		url: 'https://player.vimeo.com/video/640941838?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
+		roles: ['Chef opérateur'],
+		date: '2021-10-31',
+		client: 'Les Films du Loup Blanc',
 	},
 ];

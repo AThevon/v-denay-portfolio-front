@@ -8,8 +8,8 @@
 					>Denay</span
 				>
 			</h2>
-			<h3 class="text-lg md:text-2xl opacity-60 text-center">
-				Monteur / Photographe
+			<h3 class="text-lg md:text-2xl text-neutral-500 dark:text-neutral-400 text-center">
+				Monteur <span class="text-neutral-700 dark:text-neutral-600">/</span> Photographe
 			</h3>
 			<NuxtLink
 				to="/projects"

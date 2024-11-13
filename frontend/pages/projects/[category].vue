@@ -48,14 +48,14 @@
 
 	const currentCategory = ref();
 	const filteredProjects = ref(
-		projects.filter(
-			(project: Project) => project.category === currentCategoryTitle,
-		),
+		projects
+			.filter((project: Project) => project.category === currentCategoryTitle)
+			.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
 	);
 
 	// const { data: projects, error } = useFetch('http://localhost:8000/projects');
 
-	// ou
+	// or
 
 	// const fetchProjects = async () => {
 	// 	try {

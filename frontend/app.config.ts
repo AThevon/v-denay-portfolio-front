@@ -6,6 +6,9 @@ export default defineAppConfig({
 			label: {
 				base: 'font-second tracking-widest text-lg font-medium',
 			},
+      divider: {
+        base: 'border-red-300',
+      },
 		},
 	},
 });
