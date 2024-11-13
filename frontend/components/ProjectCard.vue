@@ -1,19 +1,24 @@
 <template>
 	<div
-		class="card bg-neutral-300/30 dark:bg-neutral-700/30 backdrop-blur-md rounded-s-2xl border border-neutral-300/10 dark:border-neutral-700/10 translate-x-10 px-10 py-20 relative overflow-hidden"
-		ref="cardElement"
+  class="card bg-neutral-300/30 dark:bg-neutral-700/30 backdrop-blur-md rounded-s-2xl border border-neutral-300/10 dark:border-neutral-700/10 md:translate-x-10 lg:px-10 py-10 md:py-20 relative overflow-hidden"
+  ref="cardElement"
 	>
-		<NuxtImg
-			:src="project.image"
-			:alt="project.title"
-			class="absolute inset-0 -z-20 object-cover w-full h-full blur-[2px]"
-		/>
-		<div
-			class="-z-10 absolute inset-0 bg-gradient-to-r from-neutral-900/20 to-neutral-950"
-		></div>
-		<div class="grid grid-cols-[620px_1fr] h-full">
+  <NuxtImg
+  :src="project.image"
+  :alt="project.title"
+  class="absolute inset-0 -z-20 object-cover w-full h-full blur-[2px]"
+  />
+  <div
+  class="-z-10 absolute inset-0 bg-gradient-to-r from-neutral-900/20 to-neutral-950"
+  ></div>
+  <div class="grid xl:grid-cols-[620px_1fr] h-full">
+      <p
+        class="md:absolute md:top-8 xl:top-10 md:right-16 font-second tracking-widest text-gray-400 w-full text-center md:text-end mb-6 text-xl"
+      >
+        {{ formatDate(project.date) }}
+      </p>
 			<iframe
-				class="rounded-lg aspect-video place-self-center"
+				class="rounded-lg w-full md:w-[80%] lg:w-[620px] aspect-video place-self-center"
 				:src="project.url"
 				width="620"
 				height="400"
@@ -24,19 +29,16 @@
 				allowfullscreen
 			></iframe>
 			<div class="pl-8 pr-4 mt-20 text-neutral-100">
-				<p
-					class="absolute top-10 right-16 font-second tracking-widest text-gray-400 text-xl"
-				>
-					{{ formatDate(project.date) }}
-				</p>
-				<div class="h-full flex flex-col gap-8 items-start">
-					<div>
+				<div class="h-full flex flex-col gap-8 items-center xl:items-start">
+					<div class="flex flex-col items-center xl:items-start">
 						<h3 class="text-4xl font-bold">
 							{{ project.title }}
 						</h3>
 						<p class="w-fit font-second text-2xl tracking-widest text-gray-300">
-              <span class="block h-[1.5px] bg-neutral-400 w-[125%] my-2 rounded" />
-              {{ project.client }}
+							<span
+								class="block h-[1.5px] bg-neutral-400 -translate-x-[12.5%] xl:translate-x-0 w-[125%] my-2 rounded"
+							/>
+							{{ project.client }}
 						</p>
 					</div>
 					<div class="text-lg font-light text-gray-300">

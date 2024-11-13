@@ -229,7 +229,7 @@ export const projects: Project[] = [
 		image:
 			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/FICTION/le-magasin-des-folies.png',
 		url: 'https://player.vimeo.com/video/697297985?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
-		roles: ['Chef opérateur'],
+		roles: ['Chef Élec'],
 		date: '2022-04-08',
 		client: 'Les Films du Loup Blanc',
 	},
@@ -239,7 +239,7 @@ export const projects: Project[] = [
 		image:
 			'https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/projects/FICTION/star-child.png',
 		url: 'https://player.vimeo.com/video/464312821?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
-		roles: ['Chef opérateur'],
+		roles: ['Élec'],
 		date: '2020-10-02',
 		client: 'Les Films du Loup Blanc',
 	},
