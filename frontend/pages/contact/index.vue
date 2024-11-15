@@ -63,6 +63,18 @@
 	import { onMounted } from 'vue';
 	import { gsap } from 'gsap';
 
+	definePageMeta({
+		title: 'Contact - Victor Denay | Monteur & Photographe',
+		meta: [
+			{
+				name: 'description',
+				content:
+					'Contactez Victor Denay pour vos projets de photographie et de montage vidéo. Disponible pour des collaborations créatives à Tours et ailleurs.',
+			},
+			{ property: 'og:image', content: '/images/contact-banner.jpg' },
+		],
+	});
+
 	const openCV = () => {
 		window.open('/cv.pdf', '_blank');
 	};

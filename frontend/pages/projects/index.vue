@@ -37,6 +37,18 @@
 	import gsap from 'gsap';
 	import { categories } from '~/data/projects';
 
+	definePageMeta({
+		title: 'Projets Vidéo - Victor Denay | Monteur Vidéo',
+		meta: [
+			{
+				name: 'description',
+				content:
+					'Découvrez les projets vidéo de Victor Denay, un expert en montage vidéo créatif, travaillant sur des clips, interviews, publicités et courts-métrages.',
+			},
+			{ property: 'og:image', content: '/images/video-projects.png' },
+		],
+	});
+
 	const router = useRouter();
 
 	const categoryDivs = ref<(HTMLElement | null)[]>([]);

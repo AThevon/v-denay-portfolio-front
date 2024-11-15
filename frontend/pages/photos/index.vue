@@ -56,6 +56,18 @@
 	import { ref } from 'vue';
 	import { X, LoaderCircle } from 'lucide-vue-next';
 
+	definePageMeta({
+		title: 'Galerie Photo - Victor Denay | Photographe',
+		meta: [
+			{
+				name: 'description',
+				content:
+					'Explorez la galerie photo de Victor Denay, mettant en avant des portraits, paysages et projets artistiques.',
+			},
+			{ property: 'og:image', content: '/images/photo-gallery.jpg' },
+		],
+	});
+
 	const viewerOpen = ref(false);
 	const viewerLoading = ref(true);
 	const currentIndex = ref(0);

@@ -8,8 +8,12 @@
 					>Denay</span
 				>
 			</h2>
-			<h3 class="text-lg md:text-2xl text-neutral-500 dark:text-neutral-400 text-center">
-				Monteur <span class="text-neutral-700 dark:text-neutral-600">/</span> Photographe
+			<h3
+				class="text-lg md:text-2xl text-neutral-500 dark:text-neutral-400 text-center"
+			>
+				Monteur
+				<span class="text-neutral-700 dark:text-neutral-600">/</span>
+				Photographe
 			</h3>
 			<NuxtLink
 				to="/projects"
@@ -44,6 +48,18 @@
 
 <script lang="ts" setup>
 	import gsap from 'gsap';
+
+	definePageMeta({
+		title: 'Accueil - Victor Denay | Monteur & Photographe',
+		meta: [
+			{
+				name: 'description',
+				content:
+					'Bienvenue sur le portfolio de Victor Denay, un professionnel créatif en montage vidéo et photographie. Découvrez ses travaux récents et projets artistiques.',
+			},
+			{ property: 'og:image', content: '/images/home-preview.png' },
+		],
+	});
 
 	const rotatedDiv = ref(null);
 

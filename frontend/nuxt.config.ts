@@ -39,6 +39,45 @@ export default defineNuxtConfig({
 		from: '"Nom" <email@example.com>',
 	},
 	app: {
+		head: {
+			title: 'Victor Denay - Monteur & Photographe',
+			meta: [
+				{
+					name: 'description',
+					content:
+						'Portfolio de Victor Denay, monteur et photographe. Découvrez ses projets vidéo et photo.',
+				},
+				{
+					name: 'keywords',
+					content:
+						'Victor Denay, photographe, monteur vidéo, portfolio, photographie, réalisateur, montage vidéo, Tours',
+				},
+				{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
+				{
+					property: 'og:title',
+					content: 'Victor Denay - Monteur & Photographe',
+				},
+				{
+					property: 'og:description',
+					content:
+						'Explorez le portfolio de Victor Denay, spécialisé en photographie et montage vidéo.',
+				},
+				{ property: 'og:image', content: '/og-image.png' },
+				{ property: 'og:type', content: 'website' },
+				{ property: 'og:url', content: 'https://victordenay.com' },
+				{ name: 'twitter:card', content: 'summary_large_image' },
+				{
+					name: 'twitter:title',
+					content: 'Victor Denay - Monteur & Photographe',
+				},
+				{
+					name: 'twitter:description',
+					content:
+						'Portfolio de Victor Denay, découvrez ses projets de photo et vidéo.',
+				},
+				{ name: 'twitter:image', content: '/og-image.png' },
+			],
+		},
 		pageTransition: {
 			name: 'slide-fade-y',
 			mode: 'out-in',
