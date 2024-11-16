@@ -1,22 +1,22 @@
 <template>
 	<div
-  class="card bg-neutral-300/30 dark:bg-neutral-700/30 backdrop-blur-md rounded-s-2xl border border-neutral-300/10 dark:border-neutral-700/10 md:translate-x-10 lg:px-10 py-10 md:py-20 relative overflow-hidden"
-  ref="cardElement"
+		class="card bg-neutral-300/30 dark:bg-neutral-700/30 backdrop-blur-md rounded-s-2xl border border-neutral-300/10 dark:border-neutral-700/10 md:translate-x-10 lg:px-10 py-10 md:py-20 relative overflow-hidden"
+		ref="cardElement"
 	>
-  <NuxtImg
-  :src="project.image"
-  :alt="project.title"
-  class="absolute inset-0 -z-20 object-cover w-full h-full blur-[2px]"
-  />
-  <div
-  class="-z-10 absolute inset-0 bg-gradient-to-r from-neutral-900/20 to-neutral-950"
-  ></div>
-  <div class="grid xl:grid-cols-[620px_1fr] h-full">
-      <p
-        class="md:absolute md:top-8 xl:top-10 md:right-16 font-second tracking-widest text-gray-400 w-full text-center md:text-end mb-6 text-xl"
-      >
-        {{ formatDate(project.date) }}
-      </p>
+		<NuxtImg
+			:src="project.image"
+			:alt="project.title"
+			class="absolute inset-0 -z-20 object-cover w-full h-full blur-[3px]"
+		/>
+		<div
+			class="-z-10 absolute inset-0 bg-gradient-to-r from-neutral-900/20 to-neutral-950"
+		></div>
+		<div class="grid xl:grid-cols-[620px_1fr] h-full">
+			<p
+				class="md:absolute md:top-8 xl:top-10 md:right-16 font-second tracking-widest text-gray-400 w-full text-center md:text-end mb-6 text-xl"
+			>
+				{{ formatDate(project.date) }}
+			</p>
 			<iframe
 				class="rounded-lg w-full md:w-[80%] lg:w-[620px] aspect-video place-self-center"
 				:src="project.url"
@@ -63,10 +63,9 @@
 </template>
 
 <script lang="ts" setup>
-	import { CategoryTitle, type Project } from '~/data/projects';
+	import { type Project } from '~/data/projects';
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
-	import Category from '~/pages/projects/[category].vue';
 
 	// Enregistre le plugin ScrollTrigger
 	gsap.registerPlugin(ScrollTrigger);

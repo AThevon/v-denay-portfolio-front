@@ -1,5 +1,5 @@
 <template>
-	<div class="font-main h-screen">
+	<div class="font-main h-screen overflow-x-hidden overflow-y-scroll">
 		<BurgerMenu :links="links" />
 		<aside class="h-full fixed w-[12rem] px-10 flex-col hidden md:flex">
 			
@@ -76,3 +76,6 @@
 		{ name: 'Contact', to: '/contact', icon: Send },
 	];
 </script>
+
+<style scoped>
+</style>

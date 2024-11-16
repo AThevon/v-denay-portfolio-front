@@ -20,6 +20,10 @@ export default {
 				main: ['Montserrat'],
 				second: ['New Amsterdam'],
 			},
+      backgroundImage: {
+        'gradient-instagram': 'linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)',
+        'gradient-linkedin': 'linear-gradient(45deg, #0072b1, #00a0dc)',
+      },
 		},
 	},
 };

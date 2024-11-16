@@ -8,7 +8,7 @@
 		</h2>
 		<div
 			v-if="images.length"
-			class="p-2 md:p-12 md:columns-2 xl:columns-3 gap-4 mx-auto space-y-4 w-full"
+			class="p-2 md:p-12 md:columns-2 xl:columns-3 min-[2200px]:columns-4 gap-4 mx-auto space-y-4 w-full"
 		>
 			<div v-for="(image, index) in images" :key="index" class="relative">
 				<!-- Skeleton loader while the image is loading -->

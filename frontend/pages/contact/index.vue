@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full">
+	<div class="h-full max-w-[100rem] mx-auto">
 		<div class="py-8 xl:py-24">
 			<h2 class="text-3xl text-center font-bold">Me contacter</h2>
 			<UDivider size="sm" class="divider w-72 mx-auto mt-2">
@@ -15,18 +15,20 @@
 				</h3>
 				<NuxtLink
 					to="https://www.instagram.com/nitro_vision?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-neutral-800 transition-all active:scale-95"
+					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-gradient-instagram transition-all active:scale-95"
 				>
 					<Instagram class="w-6 h-6" />
 					Suivez-moi sur Instagram
 				</NuxtLink>
+
 				<NuxtLink
 					to="https://www.linkedin.com/in/victor-denay-844889256/"
-					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-neutral-800 transition-all active:scale-95"
+					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-gradient-linkedin transition-all active:scale-95"
 				>
 					<Linkedin class="w-6 h-6" />
-					Rejoingez-moi sur Linkedin
+					Rejoignez-moi sur LinkedIn
 				</NuxtLink>
+
 				<h3
 					class="flex items-center gap-2 text-2xl mt-8 mb-4 font-bold font-second tracking-widest"
 				>
@@ -34,7 +36,7 @@
 				</h3>
 				<button
 					@click="openCV"
-					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-neutral-800 transition-all active:scale-95"
+					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-red-600 transition-all active:scale-95"
 				>
 					<FileOutput class="w-6 h-6" />
 					Ouvrir le PDF

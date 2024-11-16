@@ -1,5 +1,5 @@
 <template>
-	<section class="w-full h-full overflow-scroll">
+	<section class="w-full h-full max-w-[120rem] mx-auto">
 		<!-- Galleries -->
 		<ImageGallery
 			title="Photos Color"
