@@ -9,6 +9,10 @@
 <script setup></script>
 
 <style>
+	body {
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
 	.slide-fade-y-enter-active,
 	.slide-fade-y-leave-active,
 	.slide-fade-y-reverse-enter-active,

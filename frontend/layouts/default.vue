@@ -1,9 +1,8 @@
 <template>
-	<div class="font-main h-screen overflow-x-hidden overflow-y-scroll">
+	<div class="font-main h-screen">
 		<BurgerMenu :links="links" />
 		<aside class="h-full fixed w-[12rem] px-10 flex-col hidden md:flex">
-			
-      <NuxtLink to="/" class="w-fit h-fit my-10 transition-all active:scale-95">
+			<NuxtLink to="/" class="w-fit h-fit my-10 transition-all active:scale-95">
 				<h1 class="flex flex-col text-3xl">
 					Victor<span class="ml-8 font-bold font-second tracking-widest"
 						>Denay</span
@@ -43,7 +42,7 @@
 					>
 						<Linkedin class="w-8 h-8" />
 					</NuxtLink>
-          <ThemeToggle />
+					<ThemeToggle />
 				</li>
 			</ul>
 		</aside>
@@ -77,5 +76,4 @@
 	];
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
