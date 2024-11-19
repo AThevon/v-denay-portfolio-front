@@ -2,16 +2,19 @@
 	<section class="w-full h-full max-w-[120rem] mx-auto">
 		<!-- Galleries -->
 		<ImageGallery
+			v-if="showFirstGallery"
 			title="Photos Color"
 			folder="photos/photos-color"
 			@open-viewer="openViewer"
 		/>
 		<ImageGallery
+			v-if="showSecondGallery"
 			title="Illusions Perdues"
 			folder="photos/illusions-perdues"
 			@open-viewer="openViewer"
 		/>
 		<ImageGallery
+			v-if="showThirdGallery"
 			title="Portraits"
 			folder="photos/portraits"
 			@open-viewer="openViewer"
@@ -53,7 +56,7 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue';
+	import { ref, onMounted } from 'vue';
 	import { X, LoaderCircle } from 'lucide-vue-next';
 
 	definePageMeta({
@@ -72,6 +75,24 @@
 	const viewerLoading = ref(true);
 	const currentIndex = ref(0);
 	const images = ref([]);
+
+	// State for gallery visibility
+	const showFirstGallery = ref(false);
+	const showSecondGallery = ref(false);
+	const showThirdGallery = ref(false);
+
+	onMounted(() => {
+		// Add delays for displaying galleries
+		setTimeout(() => {
+			showFirstGallery.value = true;
+		}, 0);
+		setTimeout(() => {
+			showSecondGallery.value = true;
+		}, 500);
+		setTimeout(() => {
+			showThirdGallery.value = true;
+		}, 1000);
+	});
 
 	const openViewer = async ({ index, images: imgs }) => {
 		viewerLoading.value = true;
