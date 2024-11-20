@@ -14,17 +14,17 @@
 			<h2
 				class="text-3xl text-center font-bold font-second tracking-widest capitalize"
 			>
-				{{ currentCategory?.title }}
+				{{ categoryTitle }}
 			</h2>
 			<UDivider size="sm" class="divider w-48 mx-auto mt-2">
-				<component :is="currentCategory?.icon" class="w-6 h-6" />
+				<component :is="categoryIcon" class="w-6 h-6" />
 			</UDivider>
 		</div>
 		<div
 			class="hidden md:flex flex-col space-y-6 pl-4 pb-14 ml-auto max-w-[150rem]"
 		>
 			<ProjectCard
-				v-for="(project, index) in filteredProjects"
+				v-for="(project, index) in sortedProjects"
 				:key="index"
 				:project="project"
 				:index="index"
@@ -32,7 +32,7 @@
 		</div>
 		<div class="flex flex-col space-y-6 md:hidden">
 			<ProjectCardMobile
-				v-for="(project, index) in filteredProjects"
+				v-for="(project, index) in sortedProjects"
 				:key="index"
 				:project="project"
 				:index="index"
@@ -42,10 +42,12 @@
 </template>
 
 <script lang="ts" setup>
-	import { ref, onMounted } from 'vue';
+	import { ref, watchEffect } from 'vue';
 	import { useRoute } from 'vue-router';
+	import { useFetch, useRuntimeConfig } from '#imports';
+	import { AudioLines, Briefcase, Film } from 'lucide-vue-next';
 	import { gsap } from 'gsap';
-	import { categories, projects, type Project } from '~/data/projects';
+	import type { Project } from '~/data/projects';
 
 	definePageMeta({
 		pageTransition: {
@@ -53,40 +55,52 @@
 		},
 	});
 
+	// Récupération des variables d'environnement
+	const config = useRuntimeConfig();
+	const apiUrl = config.public.API_URL;
+
+	// Route et catégorie actuelle
 	const route = useRoute();
 	const currentCategoryTitle = route.params.category as string;
 
-	const currentCategory = ref();
-	const filteredProjects = ref(
-		projects
-			.filter((project: Project) => project.category === currentCategoryTitle)
-			.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+	// État des projets
+	const projects = ref<Project[]>([]);
+	const categoryTitle = ref('');
+	const categoryIcon = ref<any>('');
+
+	// Fetch des projets via l'API
+	const { data, error } = useFetch<Project[]>(
+		`${apiUrl}/projects/${currentCategoryTitle}`,
 	);
 
-	// const { data: projects, error } = useFetch('http://localhost:8000/projects');
+	const categoryIcons: { [key: string]: any } = {
+		musique: AudioLines,
+		corporate: Briefcase,
+		fiction: Film,
+	};
 
-	// or
+	// Gestion des données fetchées
+	watchEffect(() => {
+		if (data.value) {
+			projects.value = data.value;
+			// On suppose que tous les projets ont le même champ `category`
+			if (projects.value.length > 0) {
+				categoryTitle.value = projects.value[0].category.title;
+				categoryIcon.value =
+					categoryIcons[categoryTitle.value.toLowerCase()] || null;
+			}
+		}
+	});
 
-	// const fetchProjects = async () => {
-	// 	try {
-	// 		const response = await fetch('http://localhost:8000/projects');
-	// 		if (!response.ok) throw new Error('Failed to fetch projects');
-	// 		const projects = await response.json();
-	// 		filteredProjects.value = projects.filter(
-	// 			(project: any) => project.category === currentCategoryTitle,
-	// 		);
-	// 	} catch (error) {
-	// 		console.error('Error fetching projects:', error);
-	// 	}
-	// };
+	// Tri des projets par date
+	const sortedProjects = computed(() =>
+		projects.value.sort(
+			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+		),
+	);
 
+	// Animation avec GSAP
 	onMounted(() => {
-		currentCategory.value = categories.find(
-			(category: any) => category.title === currentCategoryTitle,
-		);
-
-		// fetchProjects();
-
 		const timeline = gsap.timeline();
 		timeline.from('.divider', {
 			scaleX: 0,

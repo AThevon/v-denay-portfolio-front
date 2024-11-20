@@ -1,10 +1,12 @@
 <template>
-	<component
-		ref="iconComponent"
-		:is="icon"
-		@click="toggleDarkMode"
-		class="w-8 h-8 cursor-pointer transition-opacity opacity-60 hover:opacity-100"
-	/>
+	<div title="Activer/désactiver le mode sombre">
+		<component
+			ref="iconComponent"
+			:is="icon"
+			@click="toggleDarkMode"
+			class="w-8 h-8 cursor-pointer transition-opacity opacity-60 hover:opacity-100"
+		/>
+	</div>
 </template>
 
 <script setup>

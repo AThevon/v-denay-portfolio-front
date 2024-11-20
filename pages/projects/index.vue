@@ -2,9 +2,20 @@
 	<div
 		class="grid sm:grid-cols-2 xl:grid-cols-3 h-full w-full grid-flow-row auto-rows-fr"
 	>
+		<div v-if="error" class="col-span-full text-center text-red-500">
+			Une erreur est survenue : {{ error.message }}
+		</div>
+
+		<div
+			v-else-if="status === 'loading'"
+			class="col-span-full text-center text-gray-500"
+		>
+			Chargement des catégories...
+		</div>
+
 		<div
 			v-for="(category, index) in categories"
-			:key="index"
+			:key="category.id"
 			class="group relative cursor-pointer overflow-hidden"
 			:class="{
 				'sm:col-span-2 xl:col-span-1':
@@ -18,7 +29,7 @@
 			></div>
 			<NuxtImg
 				class="h-full w-full object-cover -z-10 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1"
-				:src="`/images/${category.image}`"
+				:src="category.image"
 				:alt="category.title"
 			/>
 			<div
@@ -33,9 +44,8 @@
 </template>
 
 <script lang="ts" setup>
-	import { onMounted, ref } from 'vue';
+	import { onMounted, ref, computed } from 'vue';
 	import gsap from 'gsap';
-	import { categories } from '~/data/projects';
 
 	definePageMeta({
 		title: 'Projets Vidéo - Victor Denay | Monteur Vidéo',
@@ -50,9 +60,23 @@
 	});
 
 	const router = useRouter();
+	const config = useRuntimeConfig();
+	const apiUrl = config.public.API_URL;
 
+	// Référence pour les divs des catégories
 	const categoryDivs = ref<(HTMLElement | null)[]>([]);
 
+	// Utilisation de useFetch pour récupérer les catégories
+	const {
+		data: categoriesData,
+		status,
+		error,
+	} = useFetch(`${apiUrl}/categories`);
+
+	// Gestion des catégories récupérées
+	const categories = computed(() => categoriesData.value || []);
+
+	// Animation GSAP à l'affichage
 	onMounted(() => {
 		gsap.from(categoryDivs.value, {
 			y: 100,
@@ -63,15 +87,14 @@
 		});
 	});
 
+	// Navigation avec animation
 	const handleNavigation = (index: number, category: string) => {
 		const tl = gsap.timeline({
 			onComplete: () => {
-				// Navigation après toutes les animations
 				router.push({ name: 'projects-category', params: { category } });
 			},
 		});
 
-		// Animation de sortie de la carte cliquée
 		tl.to(categoryDivs.value[index], {
 			scale: 0.7,
 			opacity: 0,
@@ -79,7 +102,6 @@
 			ease: 'power1.out',
 		});
 
-		// Animation des autres cartes avec un léger décalage
 		tl.to(
 			categoryDivs.value.filter((_, i) => i !== index),
 			{
@@ -87,7 +109,7 @@
 				duration: 0.2,
 				ease: 'power1.in',
 			},
-			'-=0.07', // Commence 0.1 seconde avant la fin de la première animation
+			'-=0.07',
 		);
 	};
 </script>

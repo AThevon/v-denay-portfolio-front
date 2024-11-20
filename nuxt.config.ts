@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 		AWS_REGION: process.env.AWS_REGION,
 		AWS_S3_BUCKET: process.env.AWS_S3_BUCKET,
 		public: {
+      API_URL: process.env.API_URL,
 			AWS_REGION: process.env.AWS_REGION,
 		},
 	},

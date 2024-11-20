@@ -78,7 +78,11 @@
 	});
 
 	const openCV = () => {
-		window.open('/cv.pdf', '_blank');
+		// URL publique de S3
+		window.open(
+			`https://v-denay-portfolio.s3.eu-west-3.amazonaws.com/cv.pdf`,
+			'_blank',
+		);
 	};
 
 	onMounted(() => {
