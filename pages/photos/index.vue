@@ -45,7 +45,7 @@
 			<NuxtImg
 				v-if="viewerOpen && !viewerLoading && images[currentIndex]"
 				:alt="images[currentIndex]?.alt || 'Image'"
-				class="img-viewer h-full max-h-[90%] object-contain shadow"
+				class="img-viewer md:h-full max-h-[90%] object-contain shadow"
 				width="auto"
 				height="auto"
 				:src="images[currentIndex]?.src"
@@ -56,33 +56,19 @@
 </template>
 
 <script setup>
-	import { ref, onMounted } from 'vue';
+	import { ref, onMounted, onUnmounted } from 'vue';
 	import { X, LoaderCircle } from 'lucide-vue-next';
-
-	definePageMeta({
-		title: 'Galerie Photo - Victor Denay | Photographe',
-		meta: [
-			{
-				name: 'description',
-				content:
-					'Explorez la galerie photo de Victor Denay, mettant en avant des portraits, paysages et projets artistiques.',
-			},
-			{ property: 'og:image', content: '/images/photo-gallery.jpg' },
-		],
-	});
 
 	const viewerOpen = ref(false);
 	const viewerLoading = ref(true);
 	const currentIndex = ref(0);
 	const images = ref([]);
 
-	// State for gallery visibility
 	const showFirstGallery = ref(false);
 	const showSecondGallery = ref(false);
 	const showThirdGallery = ref(false);
 
 	onMounted(() => {
-		// Add delays for displaying galleries
 		setTimeout(() => {
 			showFirstGallery.value = true;
 		}, 0);
@@ -92,6 +78,26 @@
 		setTimeout(() => {
 			showThirdGallery.value = true;
 		}, 1000);
+
+		// Gestion du bouton retour
+		const handlePopState = () => {
+			if (viewerOpen.value) {
+				closeViewer();
+				history.pushState(null, '', location.href);
+			}
+		};
+
+		// Ajoute un état pour le viewer ouvert
+		if (viewerOpen.value) {
+			history.pushState(null, '', location.href);
+		}
+
+		// Écoute l'événement popstate
+		window.addEventListener('popstate', handlePopState);
+
+		onUnmounted(() => {
+			window.removeEventListener('popstate', handlePopState);
+		});
 	});
 
 	const openViewer = async ({ index, images: imgs }) => {
@@ -114,6 +120,9 @@
 
 		currentIndex.value = index;
 		viewerLoading.value = false;
+
+		// Ajoute un état dans l'historique
+		history.pushState(null, '', location.href);
 	};
 
 	const closeViewer = () => {

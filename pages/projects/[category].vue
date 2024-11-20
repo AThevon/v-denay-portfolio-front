@@ -20,8 +20,18 @@
 				<component :is="currentCategory?.icon" class="w-6 h-6" />
 			</UDivider>
 		</div>
-		<div class="flex flex-col space-y-6 pl-4 pb-14 ml-auto max-w-[150rem]">
+		<div
+			class="hidden md:flex flex-col space-y-6 pl-4 pb-14 ml-auto max-w-[150rem]"
+		>
 			<ProjectCard
+				v-for="(project, index) in filteredProjects"
+				:key="index"
+				:project="project"
+				:index="index"
+			/>
+		</div>
+		<div class="flex flex-col space-y-6 md:hidden">
+			<ProjectCardMobile
 				v-for="(project, index) in filteredProjects"
 				:key="index"
 				:project="project"
