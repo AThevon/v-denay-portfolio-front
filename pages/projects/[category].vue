@@ -69,7 +69,7 @@
 	const categoryIcon = ref<any>('');
 
 	// Fetch des projets via l'API
-	const { data, error } = useFetch<Project[]>(
+	const { data, error } = await useFetch<Project[]>(
 		`${apiUrl}/projects/${currentCategoryTitle}`,
 	);
 

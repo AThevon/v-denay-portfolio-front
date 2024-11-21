@@ -72,7 +72,7 @@
 		data: categoriesData,
 		status,
 		error,
-	} = useFetch<Category[]>(`${apiUrl}/categories`);
+	} = await useFetch<Category[]>(`${apiUrl}/categories`);
 
 	// Gestion des catégories récupérées
 	const categories = computed(() => categoriesData.value || []);
