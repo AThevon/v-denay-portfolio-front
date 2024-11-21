@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { type Project } from '~/data/projects';
+	import { type Project } from '~/types';
 
 	const props = defineProps({
 		project: {

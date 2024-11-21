@@ -63,7 +63,7 @@
 </template>
 
 <script lang="ts" setup>
-	import { type Project } from '~/data/projects';
+	import { type Project } from '~/types';
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

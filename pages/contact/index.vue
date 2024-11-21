@@ -13,20 +13,20 @@
 				>
 					Sur les réseaux <CornerRightDown class="w-6 h-6 translate-y-2" />
 				</h3>
-				<NuxtLink
-					to="https://www.instagram.com/nitro_vision?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-gradient-instagram transition-all active:scale-95"
-				>
-					<Instagram class="w-6 h-6" />
-					Suivez-moi sur Instagram
-				</NuxtLink>
 
+				<!-- Afficher dynamiquement les liens sociaux -->
 				<NuxtLink
-					to="https://www.linkedin.com/in/victor-denay-844889256/"
-					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-gradient-linkedin transition-all active:scale-95"
+					v-for="link in socialLinks"
+					:key="link.platform"
+					:to="link.url"
+					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 transition-all active:scale-95"
+					:class="{
+						'hover:bg-gradient-instagram': link.platform === 'instagram',
+						'hover:bg-gradient-linkedin': link.platform === 'linkedin',
+					}"
 				>
-					<Linkedin class="w-6 h-6" />
-					Rejoignez-moi sur LinkedIn
+					<component :is="icons[link.platform]" class="w-6 h-6" />
+					{{ link.description }}
 				</NuxtLink>
 
 				<h3
@@ -62,8 +62,10 @@
 		Linkedin,
 		MessageCircle,
 	} from 'lucide-vue-next';
-	import { onMounted } from 'vue';
+	import { ref, onMounted } from 'vue';
 	import { gsap } from 'gsap';
+	import type { SocialLink } from '~/types';
+	import type { FunctionalComponent } from 'vue';
 
 	definePageMeta({
 		title: 'Contact - Victor Denay | Monteur & Photographe',
@@ -78,8 +80,24 @@
 	});
 
 	const openCV = () => {
-		window.open('/cv.pdf', '_blank');
+		const config = useRuntimeConfig();
+		const bucketUrl = config.public.AWS_BUCKET_URL;
+		window.open(`${bucketUrl}/misc/cv.pdf`, '_blank');
 	};
+
+	// Icônes dynamiques en fonction de la plateforme
+	const icons: Record<string, FunctionalComponent> = {
+		instagram: Instagram,
+		linkedin: Linkedin,
+	};
+
+	// Récupérer les liens sociaux via l'API
+	const config = useRuntimeConfig();
+	const apiUrl = config.public.API_URL;
+
+	const { data: socialLinks, error } = useFetch<SocialLink[]>(
+		`${apiUrl}/social-links`,
+	);
 
 	onMounted(() => {
 		const timeline = gsap.timeline();

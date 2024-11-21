@@ -37,9 +37,9 @@
 				class="relative w-[18rem] h-[22rem] rounded-3xl shadow-lg overflow-hidden"
 			>
 				<NuxtImg
-					src="images/victor.jpeg"
+					:src="`${bucketUrl}/misc/profile_picture.jpg`"
 					alt="Victor Denay"
-					class="object-cover -translate-y-2 scale-125 w-full h-full"
+					class="object-cover w-full h-full"
 				/>
 			</div>
 		</div>
@@ -60,6 +60,9 @@
 			{ property: 'og:image', content: '/images/home-preview.png' },
 		],
 	});
+
+	const config = useRuntimeConfig();
+	const bucketUrl = config.public.AWS_BUCKET_URL;
 
 	const rotatedDiv = ref(null);
 
