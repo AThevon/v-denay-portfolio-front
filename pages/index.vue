@@ -62,7 +62,7 @@
 	});
 
 	const config = useRuntimeConfig();
-	const bucketUrl = config.public.BUCKET_URL;
+	const bucketUrl = config.public.AWS_BUCKET_URL;
 
 	const rotatedDiv = ref(null);
 
