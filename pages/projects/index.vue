@@ -7,7 +7,7 @@
 		</div>
 
 		<div
-			v-else-if="status === 'loading'"
+			v-else-if="status === 'pending'"
 			class="col-span-full text-center text-gray-500"
 		>
 			Chargement des catégories...
@@ -15,7 +15,7 @@
 
 		<div
 			v-for="(category, index) in categories"
-			:key="category.id"
+			:key="index"
 			class="group relative cursor-pointer overflow-hidden"
 			:class="{
 				'sm:col-span-2 xl:col-span-1':
@@ -46,6 +46,7 @@
 <script lang="ts" setup>
 	import { onMounted, ref, computed } from 'vue';
 	import gsap from 'gsap';
+	import type { Category } from '~/types';
 
 	definePageMeta({
 		title: 'Projets Vidéo - Victor Denay | Monteur Vidéo',
@@ -71,7 +72,7 @@
 		data: categoriesData,
 		status,
 		error,
-	} = useFetch(`${apiUrl}/categories`);
+	} = useFetch<Category[]>(`${apiUrl}/categories`);
 
 	// Gestion des catégories récupérées
 	const categories = computed(() => categoriesData.value || []);

@@ -47,7 +47,7 @@
 	import { useFetch, useRuntimeConfig } from '#imports';
 	import { AudioLines, Briefcase, Film } from 'lucide-vue-next';
 	import { gsap } from 'gsap';
-	import type { Project } from '~/data/projects';
+	import type { Project } from '~/types';
 
 	definePageMeta({
 		pageTransition: {
