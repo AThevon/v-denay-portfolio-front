@@ -59,6 +59,22 @@
 	import { ref, onMounted, onUnmounted } from 'vue';
 	import { X, LoaderCircle } from 'lucide-vue-next';
 
+  definePageMeta({
+    pageTransition: {
+			name: 'slide-fade-x',
+			mode: 'out-in',
+		},
+    title: 'Photographies - Victor Denay | Photographe',
+    meta: [
+      {
+        name: 'description',
+        content:
+          'Découvrez les photographies de Victor Denay, un photographe passionné par les portraits et les éclairages.',
+      },
+      { property: 'og:image', content: '/images/photography.png' },
+    ],
+  });
+
 	const viewerOpen = ref(false);
 	const viewerLoading = ref(true);
 	const currentIndex = ref(0);

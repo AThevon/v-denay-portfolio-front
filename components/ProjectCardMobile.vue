@@ -5,14 +5,14 @@
 		<NuxtImg
 			:src="project.image"
 			:alt="project.title"
-			class="absolute inset-0 -z-20 object-cover w-full h-full blur-[3px]"
+			class="absolute inset-0 -z-20 object-cover w-full h-full"
 		/>
 		<div
-			class="-z-10 absolute inset-0 bg-gradient-to-r from-neutral-900/20 to-neutral-950"
+			class="-z-10 absolute inset-0 bg-gradient-to-b from-neutral-900/30 to-neutral-950/80"
 		></div>
 		<div class="grid h-full">
 			<p
-				class="font-second tracking-widest text-gray-400 w-full text-center mb-6 text-xl"
+				class="font-second tracking-widest text-gray-200 w-full text-center mb-6 text-xl"
 			>
 				{{ formatDate(project.date) }}
 			</p>
@@ -40,17 +40,17 @@
 							{{ project.client }}
 						</p>
 					</div>
-					<div class="text-lg font-light text-gray-300">
+					<div class="text-lg text-center font-light text-gray-300">
 						Rôle :
 						<span
 							class="font-bold text-neutral-100"
-							v-for="(role, index) in project.roles"
+							v-for="(role, index) in project.roles_list"
 							:key="role"
 						>
 							{{ role
 							}}<span
 								class="font-normal"
-								v-if="index < project.roles.length - 1"
+								v-if="index < project.roles_list.length - 1"
 								>,
 							</span>
 						</span>

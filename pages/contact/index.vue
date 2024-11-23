@@ -15,7 +15,13 @@
 				</h3>
 
 				<!-- Afficher dynamiquement les liens sociaux -->
+				<USkeleton v-if="status === 'pending'"
+          v-for="i in 2"
+          :key="i"
+          class="flex font-second tracking-widest gap-4 text-lg p-10 bg-neutral-300 text-neutral-800 rounded-lg"
+        />
 				<NuxtLink
+					v-else
 					v-for="link in socialLinks"
 					:key="link.platform"
 					:to="link.url"
@@ -95,9 +101,11 @@
 	const config = useRuntimeConfig();
 	const apiUrl = config.public.API_URL;
 
-	const { data: socialLinks, error } = useFetch<SocialLink[]>(
-		`${apiUrl}/social-links`,
-	);
+	const {
+		data: socialLinks,
+		status,
+		error,
+	} = await useFetch<SocialLink[]>(`${apiUrl}/social-links`);
 
 	onMounted(() => {
 		const timeline = gsap.timeline();

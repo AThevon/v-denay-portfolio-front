@@ -8,6 +8,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'nuxt-nodemailer',
 		'@nuxt/ui',
+		'@tresjs/nuxt',
 	],
 	runtimeConfig: {
 		AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,

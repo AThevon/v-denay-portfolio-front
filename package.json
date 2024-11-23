@@ -14,15 +14,20 @@
     "@nuxt/fonts": "^0.7.2",
     "@nuxt/image": "^1.7.1",
     "@nuxt/ui": "^2.18.4",
+    "@tresjs/cientos": "^4.0.3",
+    "@tresjs/core": "^4.3.1",
+    "@tresjs/nuxt": "^3.0.7",
     "gsap": "^3.12.5",
     "lucide-vue-next": "^0.436.0",
     "nuxt": "^3.13.0",
     "nuxt-swiper": "^1.2.2",
+    "three": "^0.170.0",
     "vue": "^3.5.8",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "nodemailer": "^6.9.14",
     "nuxt-nodemailer": "^1.1.2"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

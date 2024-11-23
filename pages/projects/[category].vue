@@ -24,7 +24,7 @@
 			class="hidden md:flex flex-col space-y-6 pl-4 pb-14 ml-auto max-w-[150rem]"
 		>
 			<ProjectCard
-				v-for="(project, index) in sortedProjects"
+				v-for="(project, index) in projects"
 				:key="index"
 				:project="project"
 				:index="index"
@@ -32,75 +32,93 @@
 		</div>
 		<div class="flex flex-col space-y-6 md:hidden">
 			<ProjectCardMobile
-				v-for="(project, index) in sortedProjects"
+				v-for="(project, index) in projects"
 				:key="index"
 				:project="project"
 				:index="index"
 			/>
 		</div>
+		<div v-if="projects.length !== 0" class="text-center">
+			<button
+				v-if="nextPageUrl"
+				@click="loadMoreProjects"
+				class="mt-8 md:mt-0 mb-12 w-[18rem] text-center mx-auto text-xl font-second tracking-widest px-8 py-4 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 hover:bg-neutral-800 transition-all active:scale-95"
+				:disabled="loadingMore"
+			>
+				{{ loadingMore ? 'Chargement...' : 'Voir plus' }}
+			</button>
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-	import { ref, watchEffect } from 'vue';
+	import { ref, onMounted } from 'vue';
 	import { useRoute } from 'vue-router';
-	import { useFetch, useRuntimeConfig } from '#imports';
-	import { AudioLines, Briefcase, Film } from 'lucide-vue-next';
-	import { gsap } from 'gsap';
+	import { AudioLines, Briefcase, Film, Loader } from 'lucide-vue-next';
 	import type { Project } from '~/types';
+	import { gsap } from 'gsap';
 
-	definePageMeta({
-		pageTransition: {
-			name: 'slide-fade-y-reverse',
-		},
-	});
-
-	// Récupération des variables d'environnement
+	// Variables d'environnement et routes
 	const config = useRuntimeConfig();
 	const apiUrl = config.public.API_URL;
-
-	// Route et catégorie actuelle
 	const route = useRoute();
 	const currentCategoryTitle = route.params.category as string;
 
-	// État des projets
+	// États locaux
 	const projects = ref<Project[]>([]);
 	const categoryTitle = ref('');
 	const categoryIcon = ref<any>('');
-
-	// Fetch des projets via l'API
-	const { data, error } = await useFetch<Project[]>(
+	const nextPageUrl = ref<string | null>(
 		`${apiUrl}/projects/${currentCategoryTitle}`,
 	);
+	const loadingMore = ref(false);
 
+	// Icônes des catégories
 	const categoryIcons: { [key: string]: any } = {
 		musique: AudioLines,
 		corporate: Briefcase,
 		fiction: Film,
 	};
 
-	// Gestion des données fetchées
-	watchEffect(() => {
-		if (data.value) {
-			projects.value = data.value;
-			// On suppose que tous les projets ont le même champ `category`
-			if (projects.value.length > 0) {
+	// Charger les projets (fonction réutilisable)
+	const fetchProjects = async (url: string) => {
+		loadingMore.value = true;
+
+		try {
+			const response = await $fetch<any>(url);
+
+			// Extraire les projets et la prochaine URL
+			const newProjects = response.data; // Vérifiez bien ici que `data` contient les projets
+			const nextPage = response.next_page_url;
+
+			projects.value.push(...newProjects);
+
+			// Mettre à jour l'URL pour la prochaine page
+			nextPageUrl.value = nextPage;
+
+			// Initialiser les informations de catégorie (au premier chargement uniquement)
+			if (projects.value.length > 0 && !categoryTitle.value) {
 				categoryTitle.value = projects.value[0].category.title;
 				categoryIcon.value =
 					categoryIcons[categoryTitle.value.toLowerCase()] || null;
 			}
+		} catch (error) {
+			console.error('Erreur lors du chargement des projets :', error);
+			nextPageUrl.value = null; // Si erreur, pas de page suivante
+		} finally {
+			loadingMore.value = false;
 		}
-	});
+	};
 
-	// Tri des projets par date
-	const sortedProjects = computed(() =>
-		projects.value.sort(
-			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-		),
-	);
+	// Charger plus de projets
+	const loadMoreProjects = async () => {
+		if (nextPageUrl.value) await fetchProjects(nextPageUrl.value);
+	};
 
 	// Animation avec GSAP
 	onMounted(() => {
+		if (nextPageUrl.value) fetchProjects(nextPageUrl.value);
+
 		const timeline = gsap.timeline();
 		timeline.from('.divider', {
 			scaleX: 0,

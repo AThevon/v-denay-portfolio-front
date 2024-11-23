@@ -8,7 +8,7 @@ export type Project = {
 	category: Category;
 	image: string;
 	url: string;
-	roles: string[];
+	roles_list: string[];
 	date: string;
 	client: string;
 };

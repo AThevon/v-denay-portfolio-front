@@ -45,13 +45,13 @@
 						Rôle :
 						<span
 							class="font-bold text-neutral-100"
-							v-for="(role, index) in project.roles"
+							v-for="(role, index) in project.roles_list"
 							:key="role"
 						>
 							{{ role
 							}}<span
 								class="font-normal"
-								v-if="index < project.roles.length - 1"
+								v-if="index < project.roles_list.length - 1"
 								>,
 							</span>
 						</span>
