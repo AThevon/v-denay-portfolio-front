@@ -18,7 +18,9 @@
 			<div
 				class="-z-10 absolute inset-0 bg-gradient-to-bl from-neutral-900/20 to-neutral-900/70"
 			></div>
-			<h3 class="mb-8 text-4xl text-center font-bold text-neutral-50 px-4 md:px-10 lg:px-20">
+			<h3
+				class="mb-8 text-4xl text-center font-bold text-neutral-50 px-4 md:px-10 lg:px-20"
+			>
 				{{ project.title }}
 			</h3>
 			<iframe
@@ -48,7 +50,9 @@
 					:key="role"
 				>
 					{{ role
-					}}<span class="font-normal" v-if="index < project.roles_list.length - 1"
+					}}<span
+						class="font-normal"
+						v-if="index < project.roles_list.length - 1"
 						>,
 					</span>
 				</span>
@@ -63,8 +67,9 @@
 	const config = useRuntimeConfig();
 	const apiUrl = config.public.API_URL;
 
-	const { data, status, error } = await useFetch<Project>(
+	const { data, status, error } = useFetch<Project>(
 		`${apiUrl}/featured-project`,
+		{ key: 'featured-project' },
 	);
 
 	const project = ref<Project | null>(data.value || null);

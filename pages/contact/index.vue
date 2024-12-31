@@ -105,7 +105,7 @@
 		data: socialLinks,
 		status,
 		error,
-	} = await useFetch<SocialLink[]>(`${apiUrl}/social-links`);
+	} = useFetch<SocialLink[]>(`${apiUrl}/social-links`, { key: 'social-links' });
 
 	onMounted(() => {
 		const timeline = gsap.timeline();

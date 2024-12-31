@@ -58,7 +58,8 @@
 	>
 		<NuxtLink to="/" class="w-fit h-fit transition-all active:scale-95">
 			<h1 class="flex text-2xl">
-				Victor<span class="ml-[5px] mt-[2px] font-bold font-second tracking-widest"
+				Victor<span
+					class="ml-[5px] mt-[2px] font-bold font-second tracking-widest"
 					>Denay</span
 				>
 			</h1>
