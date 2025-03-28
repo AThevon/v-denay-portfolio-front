@@ -9,14 +9,21 @@ export default defineNuxtConfig({
 		'nuxt-nodemailer',
 		'@nuxt/ui',
 		'@tresjs/nuxt',
+		'nuxt-gtag',
 	],
+  gtag: {
+    id: 'G-V3LZFE3805',
+    config: {
+      anonymize_ip: true,
+    },
+  },
 	runtimeConfig: {
 		AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
 		AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
 		AWS_REGION: process.env.AWS_REGION,
 		AWS_S3_BUCKET: process.env.AWS_S3_BUCKET,
 		public: {
-			API_URL: process.env.API_URL  || 'https://api.victordenay.com',
+			API_URL: process.env.API_URL || 'https://api.victordenay.com',
 			AWS_BUCKET_URL: process.env.AWS_BUCKET_URL,
 			AWS_REGION: process.env.AWS_REGION,
 		},
