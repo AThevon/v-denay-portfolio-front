@@ -19,6 +19,7 @@
     "@tresjs/nuxt": "^3.0.7",
     "gsap": "^3.12.5",
     "lucide-vue-next": "^0.436.0",
+    "node-mailjet": "^6.0.6",
     "nuxt": "^3.13.0",
     "nuxt-swiper": "^1.2.2",
     "three": "^0.170.0",
