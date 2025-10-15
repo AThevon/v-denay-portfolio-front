@@ -57,7 +57,7 @@
 				<ArrowBigDown ref="arrowRef" class="mx-auto w-6 h-6 md:w-12 md:h-12" />
 			</div>
 		</div>
-		<div class="h-screen md:p-8" id="project">
+		<div class="h-[calc(100vh-4rem)] md:p-8" id="project">
 			<FeaturedProject />
 		</div>
 	</div>

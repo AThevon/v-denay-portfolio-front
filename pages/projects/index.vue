@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="grid sm:grid-cols-2 xl:grid-cols-3 h-full w-full grid-flow-row auto-rows-fr"
+		class="grid sm:grid-cols-2 xl:grid-cols-3 h-screen w-full grid-flow-row auto-rows-fr"
 	>
 		<div v-if="error" class="col-span-full text-center text-red-500">
 			Une erreur est survenue : {{ error.message }}

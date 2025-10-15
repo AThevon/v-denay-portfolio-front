@@ -1,7 +1,7 @@
 <template>
-	<div class="font-main h-screen">
+	<div class="font-main min-h-screen flex flex-col">
 		<BurgerMenu :links="links" />
-		<aside class="h-full fixed w-[12rem] px-10 flex-col hidden md:flex">
+		<aside class="h-screen fixed w-[12rem] px-10 flex-col hidden md:flex z-10">
 			<NuxtLink to="/" class="w-fit h-fit my-10 transition-all active:scale-95">
 				<h1 class="flex flex-col text-3xl">
 					Victor<span class="ml-8 font-bold font-second tracking-widest"
@@ -46,9 +46,11 @@
 				</li>
 			</ul>
 		</aside>
-		<main class="h-full md:pl-[12rem]">
+		<main class="flex-grow md:pl-[12rem]">
 			<slot />
 		</main>
+		<Footer @open-cookie-consent="reopenCookieConsent" />
+		<CookieConsent ref="cookieConsentRef" />
 	</div>
 </template>
 
@@ -74,6 +76,14 @@
 		{ name: 'Photo', to: '/photos', icon: Camera },
 		{ name: 'Contact', to: '/contact', icon: Send },
 	];
+
+	const cookieConsentRef = ref<{ reopenBanner: () => void } | null>(null);
+
+	const reopenCookieConsent = () => {
+		if (cookieConsentRef.value) {
+			cookieConsentRef.value.reopenBanner();
+		}
+	};
 </script>
 
 <style scoped></style>
