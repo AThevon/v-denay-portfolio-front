@@ -58,9 +58,7 @@
 	import type { Project } from '~/types';
 	import { gsap } from 'gsap';
 
-	// Variables d'environnement et routes
-	const config = useRuntimeConfig();
-	const apiUrl = config.public.API_URL;
+	// Routes
 	const route = useRoute();
 	const currentCategoryTitle = route.params.category as string;
 
@@ -69,7 +67,7 @@
 	const categoryTitle = ref('');
 	const categoryIcon = ref<any>('');
 	const nextPageUrl = ref<string | null>(
-		`${apiUrl}/projects/${currentCategoryTitle}`,
+		`/api/projects/${currentCategoryTitle}`,
 	);
 	const loadingMore = ref(false);
 

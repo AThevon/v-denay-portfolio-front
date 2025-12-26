@@ -25,13 +25,17 @@
 					v-for="link in socialLinks"
 					:key="link.platform"
 					:to="link.url"
-					class="flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 transition-all active:scale-95"
-					:class="{
-						'hover:bg-gradient-instagram': link.platform === 'instagram',
-						'hover:bg-gradient-linkedin': link.platform === 'linkedin',
-					}"
+					target="_blank"
+					class="social-link flex font-second tracking-widest gap-4 text-lg p-6 bg-neutral-300 text-neutral-800 rounded-lg hover:text-neutral-100 transition-all active:scale-95"
+					:style="{ '--hover-color': getColor(link) }"
 				>
-					<component :is="icons[link.platform]" class="w-6 h-6" />
+					<img
+						v-if="link.icon_url"
+						:src="link.icon_url"
+						:alt="link.platform"
+						class="w-6 h-6 object-contain"
+					/>
+					<component v-else :is="icons[link.platform]" class="w-6 h-6" />
 					{{ link.description }}
 				</NuxtLink>
 
@@ -97,15 +101,27 @@
 		linkedin: Linkedin,
 	};
 
-	// Récupérer les liens sociaux via l'API
-	const config = useRuntimeConfig();
-	const apiUrl = config.public.API_URL;
+	// Couleurs par défaut des plateformes (fallback si pas défini en base)
+	// Correspond aux couleurs des gradients originaux
+	const platformColors: Record<string, string> = {
+		instagram: '#dc2743', // Couleur centrale du gradient Instagram
+		linkedin: '#0072b1', // Couleur du gradient LinkedIn
+		twitter: '#1DA1F2',
+		youtube: '#FF0000',
+		vimeo: '#1AB7EA',
+		tiktok: '#000000',
+	};
 
+	const getColor = (link: SocialLink) => {
+		return link.color || platformColors[link.platform] || '#3b82f6';
+	};
+
+	// Récupérer les liens sociaux via l'API interne Nuxt
 	const {
 		data: socialLinks,
 		status,
 		error,
-	} = useFetch<SocialLink[]>(`${apiUrl}/social-links`, { key: 'social-links' });
+	} = useFetch<SocialLink[]>('/api/social-links', { key: 'social-links' });
 
 	onMounted(() => {
 		const timeline = gsap.timeline();
@@ -130,3 +146,9 @@
 			);
 	});
 </script>
+
+<style scoped>
+.social-link:hover {
+	background-color: var(--hover-color);
+}
+</style>

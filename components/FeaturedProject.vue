@@ -64,11 +64,8 @@
 <script lang="ts" setup>
 	import type { Project } from '~/types';
 
-	const config = useRuntimeConfig();
-	const apiUrl = config.public.API_URL;
-
 	const { data, status, error } = useFetch<Project>(
-		`${apiUrl}/featured-project`,
+		'/api/projects/featured',
 		{ key: 'featured-project' },
 	);
 

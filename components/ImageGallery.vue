@@ -54,12 +54,11 @@
 	const emit = defineEmits(['open-viewer']);
 	const props = defineProps({
 		title: String,
-		folder: String,
+		collectionSlug: String,
 	});
 
 	const images = ref([]);
 	const titleRef = ref(null);
-	const apiUrl = `/api/s3-bucket?folder=${props.folder}`;
 
 	// Fetch images on mounted
 	onMounted(async () => {
@@ -77,24 +76,27 @@
 		);
 
 		try {
-			const response = await fetch(apiUrl);
+			// Utiliser l'API photos qui récupère depuis la base de données
+			const response = await fetch(`/api/photos/${props.collectionSlug}`);
 			if (!response.ok) {
 				console.error('Error fetching images:', response.statusText);
 				return;
 			}
-			const imageList = await response.json();
+			const data = await response.json();
+			const photoList = data.photos || [];
 
 			// Initialize image data with low-res and loading state
-			images.value = imageList.map((image) => ({
-				...image,
+			images.value = photoList.map((photo) => ({
+				src: photo.url,
+				alt: photo.alt,
 				loaded: false, // Full-res not yet loaded
-				lowResSrc: `${image.src}?quality=10`, // Low-quality version
+				lowResSrc: `${photo.url}?quality=10`, // Low-quality version
 			}));
 
 			// Load each image progressively
-			imageList.forEach((image, index) => {
+			photoList.forEach((photo, index) => {
 				const img = new Image();
-				img.src = image.src; // High-resolution image
+				img.src = photo.url; // High-resolution image
 				img.onload = () => {
 					images.value[index].loaded = true; // Full-res loaded
 				};

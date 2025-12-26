@@ -61,18 +61,16 @@
 	});
 
 	const router = useRouter();
-	const config = useRuntimeConfig();
-	const apiUrl = config.public.API_URL;
 
 	// Référence pour les divs des catégories
 	const categoryDivs = ref<(HTMLElement | null)[]>([]);
 
-	// Utilisation de useFetch pour récupérer les catégories
+	// Utilisation de useFetch pour récupérer les catégories (API interne Nuxt)
 	const {
 		data: categoriesData,
 		status,
 		error,
-	} = useFetch<Category[]>(`${apiUrl}/categories`, { key: 'categories' });
+	} = useFetch<Category[]>('/api/categories', { key: 'categories' });
 
 	// Gestion des catégories récupérées
 	const categories = computed(() => categoriesData.value || []);

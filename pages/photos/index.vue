@@ -1,24 +1,18 @@
 <template>
 	<section class="w-full h-full max-w-[120rem] mx-auto">
-		<!-- Galleries -->
+		<!-- Galleries dynamiques -->
 		<ImageGallery
-			v-if="showFirstGallery"
-			title="Photos Color"
-			folder="photos/photos-color"
+			v-for="(collection, index) in visibleCollections"
+			:key="collection.id"
+			:title="collection.name"
+			:collection-slug="collection.slug"
 			@open-viewer="openViewer"
 		/>
-		<ImageGallery
-			v-if="showSecondGallery"
-			title="Illusions Perdues"
-			folder="photos/illusions-perdues"
-			@open-viewer="openViewer"
-		/>
-		<ImageGallery
-			v-if="showThirdGallery"
-			title="Portraits"
-			folder="photos/portraits"
-			@open-viewer="openViewer"
-		/>
+
+		<!-- Loader -->
+		<div v-if="loading" class="flex justify-center py-24">
+			<LoaderCircle class="w-12 h-12 animate-spin text-neutral-400" />
+		</div>
 
 		<!-- Viewer -->
 		<div
@@ -75,25 +69,33 @@
     ],
   });
 
+	const loading = ref(true);
+	const collections = ref([]);
+	const visibleCollections = ref([]);
+
 	const viewerOpen = ref(false);
 	const viewerLoading = ref(true);
 	const currentIndex = ref(0);
 	const images = ref([]);
 
-	const showFirstGallery = ref(false);
-	const showSecondGallery = ref(false);
-	const showThirdGallery = ref(false);
+	onMounted(async () => {
+		// Charger les collections depuis l'API
+		try {
+			const response = await fetch('/api/photo-collections');
+			if (response.ok) {
+				collections.value = await response.json();
+			}
+		} catch (error) {
+			console.error('Error fetching collections:', error);
+		}
+		loading.value = false;
 
-	onMounted(() => {
-		setTimeout(() => {
-			showFirstGallery.value = true;
-		}, 0);
-		setTimeout(() => {
-			showSecondGallery.value = true;
-		}, 500);
-		setTimeout(() => {
-			showThirdGallery.value = true;
-		}, 1000);
+		// Afficher les collections progressivement avec animation
+		collections.value.forEach((collection, index) => {
+			setTimeout(() => {
+				visibleCollections.value.push(collection);
+			}, index * 500);
+		});
 
 		// Gestion du bouton retour
 		const handlePopState = () => {

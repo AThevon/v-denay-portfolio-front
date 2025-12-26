@@ -16,5 +16,8 @@ export type Project = {
 export type SocialLink = {
 	platform: string;
 	url: string;
-  description: string;
+	description: string;
+	color?: string;
+	icon_url?: string;
+	display_order?: number;
 };
